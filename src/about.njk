@@ -1,0 +1,18 @@
+---
+layout: base.njk
+permalink: /about/
+eleventyComputed:
+  pageTitle: "{{ about.title }}"
+---
+<section class="about">
+  <div class="rte">
+    <h3>{{ about.intro_heading }}</h3>
+    {{ about.intro | safe }}
+    {% if about.news_heading %}<h3>{{ about.news_heading }}</h3>{% endif %}
+    {{ about.news | safe }}
+  </div>
+  <div class="about-cols">
+    <div class="rte">{% if about.left_heading %}<h3>{{ about.left_heading }}</h3>{% endif %}{{ about.left_body | safe }}</div>
+    <div class="rte">{% if about.right_heading %}<h3>{{ about.right_heading }}</h3>{% endif %}{{ about.right_body | safe }}</div>
+  </div>
+</section>

@@ -1,0 +1,86 @@
+# Pages CMS (https://app.pagescms.org) — the editor Dad uses.
+media:
+  - name: art
+    label: Art images
+    input: src/images/art
+    output: /images/art
+    extensions: [jpg, jpeg, png, webp, heic]
+  - name: architecture
+    label: Architecture images
+    input: src/images/architecture
+    output: /images/architecture
+    extensions: [jpg, jpeg, png, webp, heic]
+  - name: site
+    label: Other images
+    input: src/images/site
+    output: /images/site
+    extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: art
+    label: "🎨 Art (home page)"
+    type: file
+    path: content/art.yml
+    fields:
+      - { name: title, label: Page name, type: string, hidden: true }
+      - name: items
+        label: Paintings — drag to reorder, first one shows first
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{fields.caption}" }
+        fields:
+          - { name: image, label: Picture, type: image, required: true, options: { media: art } }
+          - { name: caption, label: "Caption (title, year, size)", type: string }
+
+  - name: architecture
+    label: "🏛 Architecture"
+    type: file
+    path: content/architecture.yml
+    fields:
+      - { name: title, label: Page name, type: string, hidden: true }
+      - name: items
+        label: Drawings — drag to reorder
+        type: object
+        list:
+          collapsible: { collapsed: true, summary: "{fields.caption}" }
+        fields:
+          - { name: image, label: Picture, type: image, required: true, options: { media: architecture } }
+          - { name: caption, label: Caption, type: string }
+
+  - name: about
+    label: "👤 About"
+    type: file
+    path: content/about.yml
+    fields:
+      - { name: title, label: Page name, type: string, hidden: true }
+      - { name: intro_heading, label: Top heading, type: string }
+      - { name: intro, label: Biography, type: rich-text }
+      - { name: news_heading, label: News heading, type: string }
+      - { name: news, label: "News & exhibitions", type: rich-text }
+      - { name: left_heading, label: Left column heading, type: string }
+      - { name: left_body, label: Left column text, type: rich-text }
+      - { name: right_heading, label: Right column heading, type: string }
+      - { name: right_body, label: Right column text, type: rich-text }
+
+  - name: contact
+    label: "✉️ Contact page"
+    type: file
+    path: content/contact.yml
+    fields:
+      - { name: title, label: Page name, type: string, hidden: true }
+      - { name: background, label: Background picture, type: image, options: { media: site } }
+      - { name: show_form_button, label: Show the contact form button, type: boolean }
+      - { name: form_button_label, label: Button text, type: string }
+
+  - name: settings
+    label: "⚙️ Name, email, phone"
+    type: file
+    path: content/settings.yml
+    fields:
+      - { name: site_title, label: Name at top of site, type: string, required: true }
+      - { name: email, label: Email (also receives contact-form messages), type: string }
+      - { name: phone, label: Phone, type: string }
+      - { name: facebook, label: Facebook link, type: string }
+      - { name: show_header_button, label: Show button in top-right corner, type: boolean }
+      - { name: header_button_label, label: Button text, type: string }
+      - { name: header_button_link, label: Button link, type: string }

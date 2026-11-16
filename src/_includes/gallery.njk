@@ -1,0 +1,10 @@
+<section class="gallery {{ cls }}">
+  <div class="grid">
+  {% for it in items %}
+    <figure class="item">
+      {% tile it.image, (it.caption or ("Artwork by " + site.site_title)), sizes %}
+      {% if it.caption %}<figcaption>{{ it.caption }}</figcaption>{% endif %}
+    </figure>
+  {% endfor %}
+  </div>
+</section>

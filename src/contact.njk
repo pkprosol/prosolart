@@ -1,0 +1,36 @@
+---
+layout: base.njk
+permalink: /contact/
+bodyClass: on-dark
+eleventyComputed:
+  pageTitle: "{{ contact.title }}"
+---
+<section class="contact-hero" style="background-image:url('{% bg contact.background %}')">
+  <div class="contact-inner">
+    {% if site.email %}<h2><a href="mailto:{{ site.email }}">{{ site.email }}</a></h2>{% endif %}
+    {% if site.phone %}<h2><a href="tel:{{ site.phone | replace(' ', '') | replace('(', '') | replace(')', '') | replace('-', '') }}">{{ site.phone }}</a></h2>{% endif %}
+    {% include "social.njk" %}
+    {% if contact.show_form_button %}<button class="btn btn-light" id="open-form">{{ contact.form_button_label }}</button>{% endif %}
+  </div>
+</section>
+<section class="contact-foot">{% include "social.njk" %}</section>
+
+<div class="modal" id="form-modal" hidden role="dialog" aria-modal="true" aria-labelledby="form-h">
+  <form class="form" id="contact-form" action="https://formsubmit.co/ajax/{{ site.email }}" method="POST" novalidate>
+    <button type="button" class="modal-x" aria-label="Close">&times;</button>
+    <h3 id="form-h">Contact</h3>
+    <fieldset><legend>Name</legend>
+      <div class="row">
+        <label>First Name <span>(required)</span><input name="first_name" required autocomplete="given-name"></label>
+        <label>Last Name <span>(required)</span><input name="last_name" required autocomplete="family-name"></label>
+      </div>
+    </fieldset>
+    <label>Email <span>(required)</span><input type="email" name="email" required autocomplete="email"></label>
+    <label>Subject <span>(required)</span><input name="_subject" required></label>
+    <label>Message <span>(required)</span><textarea name="message" rows="4" required></textarea></label>
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+    <input type="hidden" name="_template" value="box">
+    <p class="form-status" role="status" aria-live="polite"></p>
+    <div class="center"><button class="btn" type="submit">Send</button></div>
+  </form>
+</div>

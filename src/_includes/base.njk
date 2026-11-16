@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if pageTitle %}{{ pageTitle }} — {% endif %}{{ site.site_title }}</title>
+<meta name="description" content="{{ site.site_title }} — Polish American artist based in New England. Abstract painting and architectural illustration.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abel&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body class="{{ bodyClass }}">
+<header class="hdr" id="hdr">
+  <a class="hdr-title" href="/">{{ site.site_title }}</a>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><span></span><span></span></button>
+  <nav class="hdr-nav" id="nav">
+    {% for n in [["Art","/"],["Architecture","/architecture/"],["About","/about/"],["Contact","/contact/"]] %}
+    <a href="{{ n[1] }}"{% if page.url == n[1] %} class="active" aria-current="page"{% endif %}>{{ n[0] }}</a>
+    {% endfor %}
+    <div class="nav-social">{% include "social.njk" %}</div>
+  </nav>
+  <div class="hdr-right">
+    {% include "social.njk" %}
+    {% if site.show_header_button %}<a class="btn" href="{{ site.header_button_link }}">{{ site.header_button_label }}</a>{% endif %}
+  </div>
+</header>
+<main>
+{{ content | safe }}
+</main>
+<div class="lb" id="lb" hidden aria-modal="true" role="dialog" aria-label="Image viewer">
+  <button class="lb-x" aria-label="Close">&times;</button>
+  <button class="lb-prev" aria-label="Previous"><svg viewBox="0 0 24 44"><path d="M22 2 2 22l20 20"/></svg></button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button class="lb-next" aria-label="Next"><svg viewBox="0 0 24 44"><path d="m2 2 20 20L2 42"/></svg></button>
+</div>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

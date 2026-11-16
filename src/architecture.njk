@@ -1,0 +1,8 @@
+---
+layout: base.njk
+permalink: /architecture/
+eleventyComputed:
+  pageTitle: "{{ architecture.title }}"
+---
+{% set items = architecture.items %}{% set cls = "g-arch" %}{% set sizes = "(max-width: 767px) 50vw, 30vw" %}
+{% include "gallery.njk" %}
