@@ -2,7 +2,7 @@
 
 Wladyslaw Prosol's portfolio. Rebuilt off Squarespace (Nov 2026).
 
-- **Edit:** https://app.pagescms.org → this repo. Galleries, captions, About text, contact details.
+- **Edit:** /admin on the site (redirects to https://app.pagescms.org/pkprosol/prosolart/main). Galleries, captions, About text, contact details.
 - **Build:** Eleventy (`npm start` for local preview on :8080). Content in `content/*.yml`, originals in `src/images/`.
   Every image is resized + converted to WebP at build; uploads can be raw camera photos.
 - **Host:** GitHub Pages via `.github/workflows/deploy.yml`, on every push to `main`. $0.

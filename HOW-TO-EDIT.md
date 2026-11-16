@@ -1,6 +1,6 @@
 # How to update your website
 
-1. Go to app.pagescms.org and sign in (use the email invite you received).
+1. Go to prosolart.com/admin and sign in (use the email invite you received).
 2. Pick the page on the left: Art, Architecture, About, Contact, or "Name, email, phone".
 
 Add a painting
