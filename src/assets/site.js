@@ -63,14 +63,15 @@
       const btn = form.querySelector("[type=submit]"); btn.disabled = true; status.textContent = "Sending…";
       const fallback = form.action.split("/ajax/")[1];
       try {
-        const res = await fetch(form.action, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) });
+        const res = await fetch(form.action, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form), signal: AbortSignal.timeout(20000) });
         const data = await res.json().catch(() => ({}));
         if (!res.ok || String(data.success) !== "true") throw new Error(data.message || `HTTP ${res.status}`);
         form.reset(); status.textContent = "Thank you! Your message has been sent.";
       } catch (err) {
         console.error("Contact form failed:", err);
         status.classList.add("err");
-        status.innerHTML = `Sorry, the message could not be sent (${String(err.message).replace(/</g, "&lt;")}). Please email <a href="mailto:${fallback}">${fallback}</a> directly.`;
+        const why = err.name === "TimeoutError" ? "the form service did not respond" : err.message;
+        status.innerHTML = `Sorry, the message could not be sent (${String(why).replace(/</g, "&lt;")}). Please email <a href="mailto:${fallback}">${fallback}</a> directly.`;
       } finally { btn.disabled = false; }
     });
   }
