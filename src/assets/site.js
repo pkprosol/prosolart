@@ -63,7 +63,7 @@
       const btn = form.querySelector("[type=submit]"); btn.disabled = true; status.textContent = "Sending…";
       const fallback = form.action.split("/ajax/")[1];
       try {
-        const res = await fetch(form.action, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form), signal: AbortSignal.timeout(20000) });
+        const res = await fetch(form.action, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form), signal: AbortSignal.timeout(60000) });
         const data = await res.json().catch(() => ({}));
         if (!res.ok || String(data.success) !== "true") throw new Error(data.message || `HTTP ${res.status}`);
         form.reset(); status.textContent = "Thank you! Your message has been sent.";
