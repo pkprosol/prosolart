@@ -4,12 +4,12 @@ media:
     label: Art images
     input: src/images/art
     output: /images/art
-    extensions: [jpg, jpeg, png, webp, heic]
+    extensions: [jpg, jpeg, png, webp]
   - name: architecture
     label: Architecture images
     input: src/images/architecture
     output: /images/architecture
-    extensions: [jpg, jpeg, png, webp, heic]
+    extensions: [jpg, jpeg, png, webp]
   - name: site
     label: Other images
     input: src/images/site
